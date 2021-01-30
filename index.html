@@ -57,7 +57,7 @@
                 </div>
                 <div class="input-group f-class">
                     <label for="">First Class ($150)</label>
-                    <input id="first-class-value" class="inp-style inp-width" type="number"value="0">
+                    <input id="first-class-value" class="inp-style inp-width" type="number" value="0">
                     <button onclick="ticketHandler('first',false);" class="btn btn-default">
                         <i class="fas fa-minus"></i>
                     </button>
@@ -113,6 +113,13 @@
             <div id="booking-confirm" class="booking-form">
                 <h1>Congratulations !</h1>
                 <h3>Your Ticket has been Booked</h3>
+                <p>First Class Ticket : $150 x <span id="first-class-quantity"></span> = $<span id="first-class-price">00</span></p>
+                <p>Economy Ticket : $100 x <span id="economy-class-quantity"></span> = $<span id="economy-class-price">00</span></p>
+
+                <p>Total Price : $<span id="subtotals"></span></p>
+                <p>V.A.T : $<span id="vats">00</span></p>
+                <p>Grand Total : $<span id="grand-totals">00</span></p>
+
                 <a href="index.html" class="btn btn-style">Buy Again</a>
             </div>
             <div class="booking-content">
@@ -121,6 +128,11 @@
             </div>
         </main>
         <script>
+
+
+
+
+
             //Booking Form Controller
 
             document.getElementById("confirm").addEventListener("click", function () {
@@ -128,6 +140,20 @@
             bookingForm.style.display = "none";
             const bookingConfirm = document.getElementById("booking-confirm");
             bookingConfirm.style.display = "block";
+
+            const firstClass = document.getElementById('first-class-value').value;
+            document.getElementById('first-class-quantity').innerHTML = firstClass;
+            const firstClassPrices = document.getElementById('first-class-price').innerHTML = firstClass*150;
+
+            const economyClass = document.getElementById('economy-class-value').value;
+            document.getElementById('economy-class-quantity').innerHTML = economyClass;
+            const economyClassPrices =document.getElementById('economy-class-price').innerHTML = economyClass*100;
+            
+            const totalPrices = firstClassPrices + economyClassPrices;
+            document.getElementById('subtotals').innerHTML = totalPrices;
+            document.getElementById('vats').innerHTML = totalPrices*.1;
+            const grandTotal = totalPrices + (totalPrices*.1);
+            document.getElementById('grand-totals').innerHTML = grandTotal;
             });
 
             //Ticket Handler Function
